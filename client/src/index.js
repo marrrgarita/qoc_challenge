@@ -1,10 +1,11 @@
 import React from 'react';
-import {ReactDOM, render} from 'react-dom';
+import {render} from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import configureStore from './store/configureStore';
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
 
 const store = configureStore();
 //ReactDOM.render(<App />, document.getElementById('root'));
@@ -16,7 +17,11 @@ serviceWorker.unregister();
 
 render(
   <Provider store={store}>
-        <App />
-    </Provider>,
+    <BrowserRouter>
+      <Switch>
+        <Route exact path='/' component={App}/>
+      </Switch>
+    </BrowserRouter>
+  </Provider>,
     document.getElementById('root')
 )

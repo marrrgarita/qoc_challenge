@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import AppList from './components/appList';
 
 
 
-class App extends Component {
+class App extends React.Component {
   state = {
     data: null
   };

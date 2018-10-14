@@ -1,7 +1,6 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as appActions from '../actions/appActions';
-import PropTypes from 'prop-types';
 import React from 'react';
 
 class appList extends React.Component {
@@ -38,10 +37,6 @@ class appList extends React.Component {
     }
 }
 
-// appList.propTypes = {
-//     appActions: PropTypes.object,
-//     apps: PropTypes.array
-// };
 
 function mapStateToProps(state) {
     return {
