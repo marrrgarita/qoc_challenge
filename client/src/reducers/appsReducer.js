@@ -9,7 +9,8 @@ export default function apps(state = initialState.apps, action){
       return action;
     case RECEIVE_APPS:
       console.log('RECEIVE APPS');
-      newState = action.stuff;
+      console.log(action.apps);
+      let newState = action.apps;
       return newState;
     default:
       return state;
