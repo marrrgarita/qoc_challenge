@@ -32,7 +32,7 @@ class appList extends React.Component {
                         <div className="col-md-4">
                           <img src={item["im:image"][2]["label"]}/>
                           <Link to={`/details/${item.id.attributes["im:id"]}`} >
-                            <h4 key={item.id.attributes["im:id"]}>{item.title["label"]}</h4>
+                            <h4 key={item.id.attributes["im:id"]}>{item["im:name"]["label"]}</h4>
                           </Link>
                         </div>
                       );

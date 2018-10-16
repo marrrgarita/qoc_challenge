@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as appActions from '../actions/appActions';
+import {Link} from 'react-router-dom'
 import React from 'react';
 
 class appDetails extends React.Component {
@@ -34,9 +35,30 @@ class appDetails extends React.Component {
                 </div>
             )
         }else{
+            var releaseDateSplit = (actualApp["im:releaseDate"]["label"]).split('-');
+            var shortDate = `${releaseDateSplit[1]}/${releaseDateSplit[2].substring(0,2)}/${releaseDateSplit[0]}`;
             return (
-                <div className="">
-                  {actualApp.id.attributes["im:id"]}
+                <div className="row detail-holder">
+                  <header className="col-md-12">
+                      <h1 className="main-title">{actualApp["im:name"]["label"]}</h1>
+                  </header>
+                  <div className="col-md-4 img-details">
+                      <img src={actualApp["im:image"][2]["label"]}/><br/>
+                      Created By: <a href={actualApp["im:artist"]["attributes"]["href"]}>
+                      {actualApp["im:artist"]["label"]}</a>
+                      <p>{actualApp["im:price"]["label"]} {actualApp["im:price"]["attributes"]["currency"]}</p>
+                      <button type="button" className="btn btn-primary">
+                        <a href={actualApp.link["attributes"]["href"]}>Buy Now!</a>
+                      </button><br/>
+                      <Link to={`/`} >
+                        <button type="button" class="btn btn-default btn-xs">Back to Top 100</button>
+                      </Link>
+                  </div>
+                  <div className="col-md-8 app-details">
+                      <p><b>Category:</b> {actualApp.category.attributes.label}</p>
+                      <p><b>Released:</b> {shortDate}</p>
+                      <p> {actualApp.summary.label} </p>
+                  </div>
                 </div>
             )
         }
