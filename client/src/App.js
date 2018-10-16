@@ -6,9 +6,12 @@ import AppList from './components/appList';
 
 
 class App extends React.Component {
-  state = {
-    data: null
-  };
+  constructor(props) {
+        super(props)
+        this.state = {
+            data: null,
+        }
+    }
 
   componentDidMount() {
       // Call our fetch function below once the component mounts
@@ -29,11 +32,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
+      <div className="container">
+        <div className="row">
+          <header className="col-md-12">
+              <h1 className="main-title">iTunes Top 100</h1>
+          </header>
+        </div>
         <AppList />
       </div>
     );
