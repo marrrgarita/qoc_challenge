@@ -29,7 +29,7 @@ class appList extends React.Component {
                 <div className="row">
                 {reportData.map(function(item){
                       return (
-                        <div className="col-md-4">
+                        <div className="col-md-3">
                           <img src={item["im:image"][2]["label"]}/>
                           <Link to={`/details/${item.id.attributes["im:id"]}`} >
                             <h4 key={item.id.attributes["im:id"]}>{item["im:name"]["label"]}</h4>
