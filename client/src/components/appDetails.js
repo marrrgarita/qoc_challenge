@@ -1,42 +1,42 @@
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as appActions from '../actions/appActions';
-import {Link} from 'react-router-dom'
 import React from 'react';
-import '../App.css';
 
-
-class appList extends React.Component {
+class appDetails extends React.Component {
   constructor(props) {
         super(props)
+        this.state = {
+            appId: props.match.params.appid,
+        }
     }
 
     componentWillMount() {
         this.props.appActions.fetchApplications();
     }
 
+    renderData(item) {
+        return <div key={item.id}>{item.name}</div>;
+    }
+
     render() {
       var reportData = this.props.apps;
-      console.log(reportData.apps);
-        if(!reportData){
+      var appId = this.state.appId;
+      var selectedApp = reportData.filter(function(e) {
+         return e.id.attributes["im:id"] === appId;
+      });
+      var actualApp = selectedApp[0];
+      console.log(selectedApp[0]);
+        if(!actualApp){
             return (
                 <div>
-                    Loading Stuff...
+                    Loading Details...
                 </div>
             )
         }else{
             return (
-                <div className="row">
-                {reportData.map(function(item){
-                      return (
-                        <div className="col-md-4">
-                          <img src={item["im:image"][2]["label"]}/>
-                          <Link to={`/details/${item.id.attributes["im:id"]}`} >
-                            <h4 key={item.id.attributes["im:id"]}>{item.title["label"]}</h4>
-                          </Link>
-                        </div>
-                      );
-                    })}
+                <div className="">
+                  {actualApp.id.attributes["im:id"]}
                 </div>
             )
         }
@@ -59,4 +59,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(appList);
+)(appDetails);
